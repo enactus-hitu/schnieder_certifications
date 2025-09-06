@@ -53,11 +53,11 @@
   </div>
 
   <script>
-    // قائمة المستخدمين + الملفات الخاصة بهم (صور أو PDF)
+    // قائمة المستخدمين + الملفات الخاصة بهم
     const userFiles = {
-      "hazem": "hazem.pdf",
       "ahmed": "ahmed.pdf",
       "najwa": "najva.jpg",
+      "sara": "sara.png",
       "mona": "mona.pdf"
     };
 
@@ -71,16 +71,15 @@
         let filePath = userFiles[username];
         let extension = filePath.split('.').pop().toLowerCase();
 
-        // يمسح المحتوى القديم
+        // مسح أي محتوى قديم
         fileContainer.innerHTML = "";
 
         if(extension === "pdf") {
-          // عرض PDF
+          // استخدام Google Docs Viewer لعرض الـ PDF
           let iframe = document.createElement("iframe");
-          iframe.src = filePath;
+          iframe.src = "https://docs.google.com/gview?embedded=true&url=" + window.location.origin + "/" + filePath;
           fileContainer.appendChild(iframe);
         } else if(["jpg", "jpeg", "png", "gif", "webp"].includes(extension)) {
-          // عرض صورة
           let img = document.createElement("img");
           img.src = filePath;
           fileContainer.appendChild(img);
@@ -88,7 +87,7 @@
           fileContainer.innerHTML = "<p>نوع الملف غير مدعوم للعرض المباشر.</p>";
         }
 
-        // رابط التحميل
+        // زر التحميل
         fileLink.href = filePath;
         fileLink.setAttribute("download", filePath);
 
