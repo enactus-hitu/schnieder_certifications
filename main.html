@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>ملفك الشخصي</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: #f0f0f0;
+    }
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: inline-block;
+      max-width: 500px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    #preview {
+      display: none;
+      margin-top: 20px;
+    }
+    #preview img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>أدخل اسم المستخدم لتحصل على ملفك</h2>
+    <input type="text" id="username" placeholder="ادخل اسم المستخدم">
+    <button onclick="checkUser()">تسجيل</button>
+
+    <div id="preview">
+      <p>هذا هو الملف الخاص بك:</p>
+      <img id="filePreview" src="" alt="ملفك">
+      <br>
+      <a id="fileLink" href="#" download>
+        <button>تحميل الملف</button>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    // قائمة المستخدمين + الملفات المربوطة بيهم (صور كمثال)
+    const userFiles = {
+      "hazem": "hazem.jpg",
+      "ahmed": "ahmed.jpg",
+      "sara": "sara.png"
+    };
+
+    function checkUser() {
+      let username = document.getElementById("username").value.trim().toLowerCase();
+      let previewDiv = document.getElementById("preview");
+      let filePreview = document.getElementById("filePreview");
+      let fileLink = document.getElementById("fileLink");
+
+      if(userFiles[username]) {
+        filePreview.src = userFiles[username];  // يعرض الصورة
+        fileLink.href = userFiles[username];    // يربط التحميل
+        fileLink.setAttribute("download", userFiles[username]);
+        previewDiv.style.display = "block";
+      } else {
+        alert("اسم المستخدم غير موجود في النظام");
+        previewDiv.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
