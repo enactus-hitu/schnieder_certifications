@@ -16,7 +16,7 @@
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
       display: inline-block;
-      max-width: 500px;
+      max-width: 800px;
     }
     input, button {
       padding: 10px;
@@ -27,10 +27,13 @@
       display: none;
       margin-top: 20px;
     }
-    #preview img {
-      max-width: 100%;
+    iframe, img {
+      width: 100%;
+      max-height: 500px;
+      border: 1px solid #ddd;
       border-radius: 8px;
       margin-bottom: 15px;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -42,8 +45,7 @@
 
     <div id="preview">
       <p>هذا هو الملف الخاص بك:</p>
-      <img id="filePreview" src="" alt="ملفك">
-      <br>
+      <div id="fileContainer"></div>
       <a id="fileLink" href="#" download>
         <button>تحميل الملف</button>
       </a>
@@ -51,23 +53,45 @@
   </div>
 
   <script>
-    // قائمة المستخدمين + الملفات المربوطة بيهم (صور كمثال)
+    // قائمة المستخدمين + الملفات الخاصة بهم (صور أو PDF)
     const userFiles = {
-      "najwa": "najva.jpg",
+      "hazem": "hazem.pdf",
       "ahmed": "ahmed.pdf",
-      "sara": "sara.png"
+      "najwa": "najva.jpg",
+      "mona": "mona.pdf"
     };
 
     function checkUser() {
       let username = document.getElementById("username").value.trim().toLowerCase();
       let previewDiv = document.getElementById("preview");
-      let filePreview = document.getElementById("filePreview");
+      let fileContainer = document.getElementById("fileContainer");
       let fileLink = document.getElementById("fileLink");
 
       if(userFiles[username]) {
-        filePreview.src = userFiles[username];  // يعرض الصورة
-        fileLink.href = userFiles[username];    // يربط التحميل
-        fileLink.setAttribute("download", userFiles[username]);
+        let filePath = userFiles[username];
+        let extension = filePath.split('.').pop().toLowerCase();
+
+        // يمسح المحتوى القديم
+        fileContainer.innerHTML = "";
+
+        if(extension === "pdf") {
+          // عرض PDF
+          let iframe = document.createElement("iframe");
+          iframe.src = filePath;
+          fileContainer.appendChild(iframe);
+        } else if(["jpg", "jpeg", "png", "gif", "webp"].includes(extension)) {
+          // عرض صورة
+          let img = document.createElement("img");
+          img.src = filePath;
+          fileContainer.appendChild(img);
+        } else {
+          fileContainer.innerHTML = "<p>نوع الملف غير مدعوم للعرض المباشر.</p>";
+        }
+
+        // رابط التحميل
+        fileLink.href = filePath;
+        fileLink.setAttribute("download", filePath);
+
         previewDiv.style.display = "block";
       } else {
         alert("اسم المستخدم غير موجود في النظام");
@@ -77,6 +101,3 @@
   </script>
 </body>
 </html>
-
-
-
