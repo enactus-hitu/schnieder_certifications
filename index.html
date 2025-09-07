@@ -356,7 +356,8 @@
     const userFiles = {
       "najwa": {file: "najva.jpg", name: "نجوي"},
       "ahmed": {file: "ahmed.pdf", name: "أحمد"},
-      "sara": {file: "sara.png", name: "سارة"}
+      "sara": {file: "sara.png", name: "سارة"},
+      "khaled alaa": {file: "Khaled_Alaa_Allam_Hamoda.png", name: "خالد"}
     };
 
     // السماح بالضغط على Enter
@@ -399,7 +400,7 @@
         if(userFiles[username]) {
           filePreview.src = userFiles[username].file;  // يعرض الصورة
           fileLink.href = userFiles[username].file;    // يربط التحميل
-          userWelcome.textContent = `مرحباً ${userFiles[username].name}!`;
+          userWelcome.textContent = `مبروك ${userFiles[username].name}!`;
           fileLink.setAttribute("download", userFiles[username].file);
           previewDiv.style.display = "block";
           
