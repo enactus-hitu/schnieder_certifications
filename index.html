@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Schnieder session certifications</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Favicon -->
   <link rel="icon" href="Schnieder_logo.png" type="image/png">
   <style>
     :root {
@@ -223,11 +222,6 @@
       animation: spin 1s linear infinite;
     }
     
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
     /* وسائط استعلام للشاشات المتوسطة والكبيرة */
     @media (min-width: 768px) {
       body {
@@ -306,6 +300,54 @@
         font-size: 16px !important; /* يمنع التكبير التلقائي في iOS */
       }
     }
+
+    /* أيقونات السوشيال ميديا */
+    .social-media {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      z-index: 100;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      color: var(--primary-color);
+      font-size: 18px;
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .social-icon.facebook:hover {
+      color: #3b5998;
+    }
+
+    .social-icon.tiktok:hover {
+      color: #000000;
+    }
+
+    .social-icon.instagram:hover {
+      color: #e4405f;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -316,12 +358,12 @@
   
   <!-- شعار HITU على الجانب - مخفي على الهاتف -->
   <div class="side-logo">
-    <img src="HITU_logo.png" alt="Schneider Electric" style="height: 80px;x;;x;;x;">
+    <img src="HITU_logo.png" alt="HITU" style="height: 80px;">
   </div>
 
   <div class="container">
     <div class="box">
-      <h2><i class="fas fa-user-circle"></i> أدخل الايميل للحصول علي شهادتك
+      <h2><i class="fas fa-user-circle"></i> أدخل الايميل للحصول علي شهادتك</h2>
       
       <div class="input-group">
         <input type="text" id="username" placeholder="ادخل بريدك هنا">
@@ -351,6 +393,19 @@
         </a>
       </div>
     </div>
+  </div>
+
+  <!-- أيقونات السوشيال ميديا -->
+  <div class="social-media">
+    <a href="https://www.facebook.com/profile.php?id=61562274600161" class="social-icon facebook" target="_blank">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://www.tiktok.com/@enactushitu?is_from_webapp=1&sender_device=pc" class="social-icon tiktok" target="_blank">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a href="https://www.instagram.com/enactushitu?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon instagram" target="_blank">
+      <i class="fab fa-instagram"></i>
+    </a>
   </div>
 
   <script>
